@@ -6,12 +6,26 @@
 //
 
 import UIKit
+import Swinject
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
+    let container: Container = {
+        let container = Container()
+        container.register(Animal.self) { _ in Cat(name: "Mini")}
+        container.register(Animal.self) { _ in Dog(name: "OSeung")}
+        
+        
+        container.register(ViewController.self) { resolver in
+            let controller = ViewController()
+            controller.animal = resolver.resolve(Animal.self)
+            return controller
+        }
+        
+        return container
+    }()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
