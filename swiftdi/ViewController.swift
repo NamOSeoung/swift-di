@@ -9,14 +9,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var animal: Animal?
+    @Inject var userInfo: UserInfo //등록 한 객체 주입
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
-        print("Animal = \(animal?.name)")
+        print("userName: \(userInfo.userName)")
+        print("userEmail: \(userInfo.userEmail)")
+        print("userAddr: \(userInfo.userAddress)")
     }
-
-
 }
 
